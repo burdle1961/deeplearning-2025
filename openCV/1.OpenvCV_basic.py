@@ -1,7 +1,5 @@
-#from ultralytics import YOLO
 import cv2
 
-#model = YOLO ('d:/fish/runs/detect/train/weights/best.pt')
 cap = cv2.VideoCapture('d:/fish/fish2.mp4')
 
 frameCount = 0
@@ -12,16 +10,6 @@ while (True) :
     
     frame = cv2.resize(frame, dsize=(640, 360))
     
-   
-#    result = model.predict(frame, show=True)
-#    print (result[0].boxes.xyxy)
-
-    # for r in result[0] :
-    #     npp = r.boxes.xyxy.numpy()
-    #     npcls = r.boxes.cls.numpy()
-    #     cx = int((npp[0][0]+npp[0][2])/2)
-    #     cy = int((npp[0][1]+npp[0][3])/2)
-
     cx = 320
     cy = 160
     frame = cv2.circle(frame, (cx, cy),30, (0,255,255), 3)
