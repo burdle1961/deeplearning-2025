@@ -6,12 +6,6 @@ import numpy as np
 import cv2
 import pickle
 
-def stringToRGB(base64_string):
-    imgdata = base64.b64decode(base64_string)
-    dataBytesIO = io.BytesIO(imgdata)
-    image = Image.open(dataBytesIO)
-    return cv2.cvtColor(np.array(image), cv2.COLOR_BGR2RGB)
-
 model = YOLO('yolov8n.pt')
 
 app = Flask(__name__)
@@ -23,9 +17,11 @@ def show():
 @app.route('/detect', methods=['POST'])
 def detect_object():
 
-    image = request.data
-    image = pickle.loads(image)
-    res = model.predict(image, show=False, verbose=False)
+    # image = request.data
+    # image = pickle.loads(image)
+    np_arr = np.frombuffer(request.data, np.uint8)
+    img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+    res = model.predict(img, show=False, verbose=False)
 
     ret = res[0].to_json()
     

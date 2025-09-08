@@ -18,8 +18,9 @@ while (True) :
     if (key == 27) :
         break
     elif (key == ord('s')) :
-        frame = pickle.dumps(frame)
-        res = requests.post('http://127.0.0.1:5000/detect', data=frame)
+        # frame = pickle.dumps(frame)
+        ret, buf = cv2.imencode('.jpg', frame)
+        res = requests.post('http://127.0.0.1:5000/detect', data=buf.tobytes())
         print (res.text)
        
 cap.release()

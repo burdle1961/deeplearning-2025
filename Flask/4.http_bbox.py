@@ -33,8 +33,8 @@ while (True) :
     if (key == 27) :
         break
     elif (key == ord('s')) :
-        image = pickle.dumps(frame)
-        res = requests.post('http://127.0.0.1:5000/detect', data=image)
+        ret, buf = cv2.imencode('.jpg', frame)
+        res = requests.post('http://127.0.0.1:5000/detect', data=buf.tobytes())
         print (res.text)
         print_bbox(frame, json.loads(res.text))
         
