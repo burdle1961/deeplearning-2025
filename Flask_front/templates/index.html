@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>이미지 객체 탐지</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <label for="folder_path">이미지 폴더 경로 입력:</label>
+        <input type="text" name="folder_path" value="{{ folder_path }}" size="50" placeholder="서버 내 폴더 경로">
+        <button type="submit">폴더 목록 보기</button>
+    </form>
+    {% if files %}
+        <form action="/predict" method="post">
+            <input type="hidden" name="folder_path" value="{{ folder_path }}">
+            <label for="filename">이미지 선택:</label>
+            <select name="filename">
+                {% for f in files %}
+                    <option value="{{ f }}">{{ f }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">탐지 요청</button>
+        </form>
+    {% elif folder_path %}
+        <p>이미지 파일이 없습니다.</p>
+    {% endif %}
+</body>
+</html>

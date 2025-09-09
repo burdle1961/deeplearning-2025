@@ -21,7 +21,7 @@ def detect_object():
     img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
     res = model.predict(img, show=False, verbose=False)
 
-    ret = res[0].to_json()
+    ret = res[0].to_html()
     
     return ret
    
