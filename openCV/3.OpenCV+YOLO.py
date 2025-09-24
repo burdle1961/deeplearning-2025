@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 import cv2
 model = YOLO ('E:/fish/runs/detect/train/weights/best.pt')
-cap = cv2.VideoCapture('E:/fish/fish2.mp4')
+cap = cv2.VideoCapture('./fish2.mp4')
 frameCount = 0
 while (True) :
     ret, frame = cap.read()
