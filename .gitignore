@@ -1,0 +1,4 @@
+Flask/*.pt
+LLM_API/gemini-client.py
+LLM_API/.env
+RAG/.env
